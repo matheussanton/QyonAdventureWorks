@@ -127,5 +127,42 @@ namespace QyonAdventureWorks.Controllers
 
             return resultado;
         }
+
+        public static List<PistaCorrida> GetPistasUtilizadas()
+        {
+
+            List<PistaCorrida> lista = new List<PistaCorrida>();
+
+            try
+            {
+                NpgsqlConnection conexao = Conexao.OpenConexao();
+
+                string sql = "SELECT * FROM pistacorrida p " +
+                    "WHERE p.id in (" +
+                    "SELECT DISTINCT pistacorridaid " +
+                    "FROM historicocorrida)";
+
+                NpgsqlCommand cmd = new NpgsqlCommand(sql, conexao);
+                NpgsqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    PistaCorrida pista = new PistaCorrida()
+                    {
+                        Id = dr["Id"].ToString(),
+                        Descricao = dr["Descricao"].ToString(),
+                    };
+
+                    lista.Add(pista);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Erro de SQL:" + e.Message);
+                throw e;
+            }
+
+            return lista;
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using QyonAdventureWorks.Models;
 
 namespace QyonAdventureWorks.Controllers
 {
@@ -8,5 +9,12 @@ namespace QyonAdventureWorks.Controllers
     public class ListaPistasUtilizadasController : ControllerBase
     {
 
+        //Lista Pistas Utilizadas
+        [HttpGet]
+        public List<PistaCorrida> GetPistasUtilizadas()
+        {
+            var lista = PistaCorridaDB.GetPistasUtilizadas();
+            return lista;
+        }
     }
 }

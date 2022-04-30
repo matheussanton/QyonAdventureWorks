@@ -33,17 +33,11 @@ namespace QyonAdventureWorks.Controllers
 
         //Altera competidores
         [HttpPut]
-        public string PutCompetidores(Competidores competidores)
+        public List<CadastroCompetidorRetorno> PutCompetidores(Competidores competidores)
         {
-            bool result = competidoresDB.AlterCompetidores(competidores);
-            if (result)
-            {
-                return "Competidor alterado com sucesso";
-            }
-            else
-            {
-                return "Erro ao cadastrar competidor";
-            }
+            List<CadastroCompetidorRetorno> result = competidoresDB.AlterCompetidores(competidores);
+
+            return result;
         }
 
         //Deleta competidores
