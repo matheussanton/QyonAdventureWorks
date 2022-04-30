@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using QyonAdventureWorks.Models;
-using Newtonsoft.Json;
 
 namespace QyonAdventureWorks.Controllers
 {
@@ -9,36 +8,57 @@ namespace QyonAdventureWorks.Controllers
     [ApiController]
     public class CompetidoresController : ControllerBase
     {
-        public static List<Competidores> lista = new List<Competidores>();
 
+        //Lista competidores
         [HttpGet]
         public List<Competidores> GetCompetidores()
         {
+            var lista = competidoresDB.GetCompetidores();
             return lista;
         }
 
+        //Insere competidores
         [HttpPost]
         public string PostCompetidores(Competidores competidores)
         {
-            lista.Add(competidores);
-            return "Estado cadastrado com sucesso";
+            bool result = competidoresDB.InsertCompetidores(competidores);
+            if (result)
+            {
+                return "Competidor cadastrado com sucesso";
+            } else
+            {
+                return "Erro ao cadastrar competidor";
+            }
         }
 
+        //Altera competidores
         [HttpPut]
         public string PutCompetidores(Competidores competidores)
         {
-            Competidores competidorAux = lista.Where(x => x.Id == competidores.Id).FirstOrDefault();
-            competidorAux.Nome = competidores.Nome;
-            return "Estado alterado com sucesso";
+            bool result = competidoresDB.AlterCompetidores(competidores);
+            if (result)
+            {
+                return "Competidor alterado com sucesso";
+            }
+            else
+            {
+                return "Erro ao cadastrar competidor";
+            }
         }
 
-
+        //Deleta competidores
         [HttpDelete]
         public string DeleteCompetidores(Competidores competidores)
         {
-            Competidores competidorAux = lista.Where(x => x.Id == competidores.Id).FirstOrDefault();
-            lista.Remove(competidorAux);
-            return "Estado excluído com sucesso";
+            bool result = competidoresDB.DeleteCompetidores(competidores);
+            if (result)
+            {
+                return "Competidor excluído com sucesso";
+            }
+            else
+            {
+                return "Erro ao cadastrar competidor";
+            }
         }
 
     }
