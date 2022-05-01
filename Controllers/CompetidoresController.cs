@@ -19,16 +19,11 @@ namespace QyonAdventureWorks.Controllers
 
         //Insere competidores
         [HttpPost]
-        public string PostCompetidores(Competidores competidores)
+        public List<CadastroCompetidorRetorno> PostCompetidores(Competidores competidores)
         {
-            bool result = competidoresDB.InsertCompetidores(competidores);
-            if (result)
-            {
-                return "Competidor cadastrado com sucesso";
-            } else
-            {
-                return "Erro ao cadastrar competidor";
-            }
+            List<CadastroCompetidorRetorno> result = competidoresDB.InsertCompetidores(competidores);
+
+            return result;
         }
 
         //Altera competidores

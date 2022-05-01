@@ -21,30 +21,16 @@ namespace QyonAdventureWorks.Controllers
         [HttpPost]
         public string PostCompetidores(HistoricoCorrida historico)
         {
-            bool result = HistoricoCorridaDB.InsertHistoricoCorrida(historico);
-            if (result)
-            {
-                return "Historico cadastrado com sucesso";
-            }
-            else
-            {
-                return "Erro ao cadastrar Historico";
-            }
+            string result = HistoricoCorridaDB.InsertHistoricoCorrida(historico);
+            return result;
         }
 
         //Altera HistoricoCorrida
         [HttpPut]
         public string PutHistoricoCorrida(HistoricoCorrida historico)
         {
-            bool result = HistoricoCorridaDB.AlterHistoricoCorrida(historico);
-            if (result)
-            {
-                return "Historico alterado com sucesso";
-            }
-            else
-            {
-                return "Erro ao cadastrar Historico";
-            }
+            string result = HistoricoCorridaDB.AlterHistoricoCorrida(historico);
+            return result;
         }
 
         ////Deleta HistoricoCorrida

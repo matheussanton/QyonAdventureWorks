@@ -43,28 +43,36 @@ namespace QyonAdventureWorks.Controllers
             return lista;
         }
 
-        public static bool InsertHistoricoCorrida(HistoricoCorrida historico)
+        public static string InsertHistoricoCorrida(HistoricoCorrida historico)
         {
-            CultureInfo culture = new CultureInfo("pt-BR");
-            var resultado = false;
+            var resultado = "Erro";
 
             try
             {
-                NpgsqlConnection conexao = Conexao.OpenConexao();
-
-                string sql = "insert into HistoricoCorrida (id,competidorId,pistaCorridaId,dataCorrida,tempoGasto)" +
-                    "values (DEFAULT,@competidorId,@pistaCorridaId,@dataCorrida,@tempoGasto)";
-
-                NpgsqlCommand cmd = new NpgsqlCommand(sql, conexao);
-                cmd.Parameters.Add("@competidorId", NpgsqlTypes.NpgsqlDbType.Integer).Value = Convert.ToInt32(historico.CompetidorId);
-                cmd.Parameters.Add("@pistaCorridaId", NpgsqlTypes.NpgsqlDbType.Integer).Value = Convert.ToInt32(historico.PistaCorridaId);
-                cmd.Parameters.Add("@dataCorrida", NpgsqlTypes.NpgsqlDbType.Date).Value = Convert.ToDateTime(historico.DataCorrida);
-                cmd.Parameters.Add("@tempoGasto", NpgsqlTypes.NpgsqlDbType.Numeric).Value = Convert.ToDouble(historico.TempoGasto);
-                int retorno = cmd.ExecuteNonQuery();
-
-                if (retorno > 0)
+                if (Convert.ToDateTime(historico.DataCorrida) > DateTime.Now)
                 {
-                    resultado = true;
+                    resultado = "Erro ao cadastrar histórico: Data da corrida não pode ser uma data futura.";
+                    return resultado;
+                }
+                else
+                {
+                    NpgsqlConnection conexao = Conexao.OpenConexao();
+
+                    string sql = "insert into HistoricoCorrida (id,competidorId,pistaCorridaId,dataCorrida,tempoGasto)" +
+                        "values (DEFAULT,@competidorId,@pistaCorridaId,@dataCorrida,@tempoGasto)";
+
+                    NpgsqlCommand cmd = new NpgsqlCommand(sql, conexao);
+                    cmd.Parameters.Add("@competidorId", NpgsqlTypes.NpgsqlDbType.Integer).Value = Convert.ToInt32(historico.CompetidorId);
+                    cmd.Parameters.Add("@pistaCorridaId", NpgsqlTypes.NpgsqlDbType.Integer).Value = Convert.ToInt32(historico.PistaCorridaId);
+                    cmd.Parameters.Add("@dataCorrida", NpgsqlTypes.NpgsqlDbType.Date).Value = Convert.ToDateTime(historico.DataCorrida);
+                    cmd.Parameters.Add("@tempoGasto", NpgsqlTypes.NpgsqlDbType.Numeric).Value = Convert.ToDouble(historico.TempoGasto);
+                    int retorno = cmd.ExecuteNonQuery();
+
+                    if (retorno > 0)
+                    {
+                        resultado = "Sucesso ao cadastrar histórico";
+                        return resultado;
+                    }
                 }
             }
             catch (Exception e)
@@ -76,29 +84,37 @@ namespace QyonAdventureWorks.Controllers
             return resultado;
         }
 
-        public static bool AlterHistoricoCorrida(HistoricoCorrida historico)
+        public static string AlterHistoricoCorrida(HistoricoCorrida historico)
         {
-            CultureInfo culture = new CultureInfo("pt-BR");
-            var resultado = false;
+            var resultado = "Erro";
 
             try
             {
-                NpgsqlConnection conexao = Conexao.OpenConexao();
-
-                string sql = "update historicocorrida set competidorId = @competidorId, pistaCorridaId = @pistaCorridaId, dataCorrida = @dataCorrida, tempoGasto = @tempoGasto " +
-                    "where id = @id";
-
-                NpgsqlCommand cmd = new NpgsqlCommand(sql, conexao);
-                cmd.Parameters.Add("@id", NpgsqlTypes.NpgsqlDbType.Integer).Value = Convert.ToInt32(historico.Id);
-                cmd.Parameters.Add("@competidorId", NpgsqlTypes.NpgsqlDbType.Integer).Value = Convert.ToInt32(historico.CompetidorId);
-                cmd.Parameters.Add("@pistaCorridaId", NpgsqlTypes.NpgsqlDbType.Integer).Value = Convert.ToInt32(historico.PistaCorridaId);
-                cmd.Parameters.Add("@dataCorrida", NpgsqlTypes.NpgsqlDbType.Date).Value = Convert.ToDateTime(historico.DataCorrida);
-                cmd.Parameters.Add("@tempoGasto", NpgsqlTypes.NpgsqlDbType.Numeric).Value = Convert.ToDouble(historico.TempoGasto);
-                int retorno = cmd.ExecuteNonQuery();
-
-                if (retorno > 0)
+                if (Convert.ToDateTime(historico.DataCorrida) > DateTime.Now)
                 {
-                    resultado = true;
+                    resultado = "Erro ao alterar histórico: Data da corrida não pode ser uma data futura.";
+                    return resultado;
+                }
+                else
+                {
+                    NpgsqlConnection conexao = Conexao.OpenConexao();
+
+                    string sql = "update historicocorrida set competidorId = @competidorId, pistaCorridaId = @pistaCorridaId, dataCorrida = @dataCorrida, tempoGasto = @tempoGasto " +
+                        "where id = @id";
+
+                    NpgsqlCommand cmd = new NpgsqlCommand(sql, conexao);
+                    cmd.Parameters.Add("@id", NpgsqlTypes.NpgsqlDbType.Integer).Value = Convert.ToInt32(historico.Id);
+                    cmd.Parameters.Add("@competidorId", NpgsqlTypes.NpgsqlDbType.Integer).Value = Convert.ToInt32(historico.CompetidorId);
+                    cmd.Parameters.Add("@pistaCorridaId", NpgsqlTypes.NpgsqlDbType.Integer).Value = Convert.ToInt32(historico.PistaCorridaId);
+                    cmd.Parameters.Add("@dataCorrida", NpgsqlTypes.NpgsqlDbType.Date).Value = Convert.ToDateTime(historico.DataCorrida);
+                    cmd.Parameters.Add("@tempoGasto", NpgsqlTypes.NpgsqlDbType.Numeric).Value = Convert.ToDouble(historico.TempoGasto);
+                    int retorno = cmd.ExecuteNonQuery();
+
+                    if (retorno > 0)
+                    {
+                        resultado = "Sucesso ao alterar histórico";
+                        return resultado;
+                    }
                 }
             }
             catch (Exception e)
