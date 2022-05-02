@@ -27,7 +27,7 @@ corridas e histórico de corridas.
 
 ## Container (Docker)
 ```bash
-docker pull matheussanton/image_qyonapi
+~~docker pull matheussanton/image_qyonapi
 ```
 # Documentação da API
 ## Competidores
