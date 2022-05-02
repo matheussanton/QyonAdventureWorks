@@ -1,0 +1,1 @@
+delete from competidores where id = @id

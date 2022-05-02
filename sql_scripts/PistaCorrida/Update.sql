@@ -1,0 +1,1 @@
+update pistacorrida set descricao = @descricao where id = @id

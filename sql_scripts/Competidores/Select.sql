@@ -1,0 +1,1 @@
+SELECT * FROM competidores ORDER BY Id

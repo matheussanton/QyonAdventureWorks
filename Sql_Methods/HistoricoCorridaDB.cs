@@ -59,7 +59,7 @@ namespace QyonAdventureWorks.Controllers
                     NpgsqlConnection conexao = Conexao.OpenConexao();
 
                     string sql = "insert into HistoricoCorrida (id,competidorId,pistaCorridaId,dataCorrida,tempoGasto)" +
-                        "values (DEFAULT,@competidorId,@pistaCorridaId,@dataCorrida,@tempoGasto)";
+                        " values (DEFAULT,@competidorId,@pistaCorridaId,@dataCorrida,@tempoGasto)";
 
                     NpgsqlCommand cmd = new NpgsqlCommand(sql, conexao);
                     cmd.Parameters.Add("@competidorId", NpgsqlTypes.NpgsqlDbType.Integer).Value = Convert.ToInt32(historico.CompetidorId);

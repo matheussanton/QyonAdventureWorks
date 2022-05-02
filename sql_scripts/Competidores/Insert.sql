@@ -1,0 +1,1 @@
+insert into competidores (id,nome,sexo,temperaturamediacorpo,peso,altura) values (DEFAULT,@nome,@sexo,@temperaturamediacorpo,@peso,@altura)

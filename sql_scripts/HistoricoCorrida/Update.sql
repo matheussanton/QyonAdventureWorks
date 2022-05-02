@@ -1,0 +1,1 @@
+update historicocorrida set competidorId = @competidorId, pistaCorridaId = @pistaCorridaId, dataCorrida = @dataCorrida, tempoGasto = @tempoGasto where id = @id

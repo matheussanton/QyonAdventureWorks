@@ -1,0 +1,1 @@
+SELECT * FROM competidores c WHERE c.id not in (SELECT DISTINCT competidorid FROM historicocorrida)

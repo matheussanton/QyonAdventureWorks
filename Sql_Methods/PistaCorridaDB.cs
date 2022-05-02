@@ -49,7 +49,7 @@ namespace QyonAdventureWorks.Controllers
                 NpgsqlConnection conexao = Conexao.OpenConexao();
 
                 string sql = "insert into pistacorrida (id,descricao)" +
-                            "values (DEFAULT,@descricao)";
+                            " values (DEFAULT,@descricao)";
 
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, conexao);
                 cmd.Parameters.Add("@descricao", NpgsqlTypes.NpgsqlDbType.Varchar).Value = pista.Descricao;

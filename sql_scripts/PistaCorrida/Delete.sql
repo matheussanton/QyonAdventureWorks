@@ -1,0 +1,1 @@
+delete from pistacorrida where id = @id

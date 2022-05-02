@@ -1,0 +1,1 @@
+SELECT * FROM pistacorrida p WHERE p.id in (SELECT DISTINCT pistacorridaid FROM historicocorrida)

@@ -1,0 +1,1 @@
+update competidores set nome = @nome, sexo = @sexo, temperaturamediacorpo = @temperaturamediacorpo, peso = @peso, altura = @altura where id = @id

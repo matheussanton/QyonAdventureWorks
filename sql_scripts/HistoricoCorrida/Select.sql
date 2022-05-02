@@ -1,0 +1,1 @@
+SELECT * FROM HistoricoCorrida ORDER BY Id

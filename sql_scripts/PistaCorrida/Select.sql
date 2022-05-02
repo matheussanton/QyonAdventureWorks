@@ -1,0 +1,1 @@
+SELECT * FROM pistacorrida ORDER BY Id
