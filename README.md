@@ -26,9 +26,11 @@ corridas e histórico de corridas.
 ![App Screenshot](https://media.discordapp.net/attachments/933832873604182077/970499773373227078/qyonerd.png)
 
 ## Container (Docker)
+
 ```bash
-~~docker pull matheussanton/image_qyonapi
+docker pull matheussanton/image_qyonapi [OUT OF DATE]
 ```
+
 # Documentação da API
 ## Competidores
 
