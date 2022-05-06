@@ -7,42 +7,6 @@ namespace QyonAdventureWorks.Controllers
     public class HistoricoCorridaDB
     {
 
-        public static List<HistoricoCorrida> GetHistoricoCorrida()
-        {
-            List<HistoricoCorrida> lista = new List<HistoricoCorrida>();
-
-            try
-            {
-                NpgsqlConnection conexao = Conexao.OpenConexao();
-
-                string sql = "SELECT * FROM HistoricoCorrida ORDER BY Id";
-
-                NpgsqlCommand cmd = new NpgsqlCommand(sql, conexao);
-                NpgsqlDataReader dr = cmd.ExecuteReader();
-
-                while (dr.Read())
-                {
-                    HistoricoCorrida HistoricoCorrida = new HistoricoCorrida()
-                    {
-                        Id = dr["Id"].ToString(),
-                        CompetidorId = dr["CompetidorId"].ToString(),
-                        PistaCorridaId = dr["PistaCorridaId"].ToString(),
-                        DataCorrida = dr["DataCorrida"].ToString(),
-                        TempoGasto = dr["TempoGasto"].ToString(),
-                    };
-
-                    lista.Add(HistoricoCorrida);
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Erro de SQL:" + e.Message);
-                throw e;
-            }
-
-            return lista;
-        }
-
         public static string InsertHistoricoCorrida(HistoricoCorrida historico)
         {
             var resultado = "Erro";
@@ -125,34 +89,5 @@ namespace QyonAdventureWorks.Controllers
 
             return resultado;
         }
-
-        //public static bool DeleteHistoricoCorrida(HistoricoCorrida historico)
-        //{
-        //    var resultado = false;
-
-        //    try
-        //    {
-        //        NpgsqlConnection conexao = Conexao.OpenConexao();
-
-        //        string sql = "delete from historicocorrida " +
-        //            "where id = @id";
-
-        //        NpgsqlCommand cmd = new NpgsqlCommand(sql, conexao);
-        //        cmd.Parameters.Add("@id", NpgsqlTypes.NpgsqlDbType.Integer).Value = Convert.ToInt32(historico.Id);
-        //        int retorno = cmd.ExecuteNonQuery();
-
-        //        if (retorno > 0)
-        //        {
-        //            resultado = true;
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine("Erro de SQL:" + e.Message);
-        //        throw e;
-        //    }
-
-        //    return resultado;
-        //}
     }
 }
