@@ -26,12 +26,17 @@ corridas e histórico de corridas.
 ![App Screenshot](https://media.discordapp.net/attachments/933832873604182077/970499773373227078/qyonerd.png)
 
 ## Container (Docker)
-
 ```bash
-docker pull matheussanton/image_qyonapi [OUT OF DATE]
+docker pull matheussanton/image_qyonapi [DESATUALIZADO]
 ```
-
 # Documentação da API
+
+## Swagger
+
+A aplicação conta com visualização e implementação da ferramenta Swagger, para teste, demonstração e
+utilização da aplicação.
+
+![App Screenshot](https://media.discordapp.net/attachments/933832873604182077/971937027689967696/Screenshot_8.png?width=819&height=676)
 ## Competidores
 
 ### Retorna todos os competidores
