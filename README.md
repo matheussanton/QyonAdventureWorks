@@ -25,7 +25,7 @@ corridas e histórico de corridas.
 
 ![App Screenshot](https://media.discordapp.net/attachments/933832873604182077/970499773373227078/qyonerd.png)
 
-## Container (Docker)
+## Imagem (Docker)
 ```bash
 docker pull matheussanton/image_qyonadventureworks
 ```
