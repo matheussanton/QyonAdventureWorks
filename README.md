@@ -27,7 +27,7 @@ corridas e histórico de corridas.
 
 ## Container (Docker)
 ```bash
-docker pull matheussanton/image_qyonapi [DESATUALIZADO]
+docker pull matheussanton/image_qyonadventureworks
 ```
 # Documentação da API
 
